@@ -12,25 +12,6 @@ class Board
     assign_tiles
   end
 
-  def assign_tiles
-    bombs = []
-    until bombs.count == 10
-      row = rand(9)
-      col = rand(9)
-      pos = [row, col]
-      bombs << pos unless bombs.include?(pos)
-    end
-
-    bombs.each do |bomb|
-      row, col = bomb
-      self[bomb].set_to_bomb
-      adjacent_positions(bomb).each do |adjacent|
-        row, col = adjacent
-        self[adjacent].add_value unless self[adjacent].bomb?
-      end
-    end
-  end
-
   def [](pos)
     row, col = pos
     @grid[row][col]
@@ -56,19 +37,6 @@ class Board
       end
       puts line
     end
-  end
-
-  def adjacent_positions(pos)
-    movements = [[1, 1], [0, 0], [-1, -1]] + [1, 0, -1].permutation(2).to_a
-
-    positions = []
-    movements.each do |move|
-      row = move[0] + pos[0]
-      col = move[1] + pos[1]
-      positions << [row, col] if row.between?(0, 8) && col.between?(0, 8)
-    end
-
-    positions
   end
 
   def reveal(pos)
@@ -97,4 +65,37 @@ class Board
     self[pos].flag
   end
 
+  private
+
+    def adjacent_positions(pos)
+      movements = [[1, 1], [0, 0], [-1, -1]] + [1, 0, -1].permutation(2).to_a
+
+      positions = []
+      movements.each do |move|
+        row = move[0] + pos[0]
+        col = move[1] + pos[1]
+        positions << [row, col] if row.between?(0, 8) && col.between?(0, 8)
+      end
+
+      positions
+    end
+
+    def assign_tiles
+      bombs = []
+      until bombs.count == 10
+        row = rand(9)
+        col = rand(9)
+        pos = [row, col]
+        bombs << pos unless bombs.include?(pos)
+      end
+
+      bombs.each do |bomb|
+        row, col = bomb
+        self[bomb].set_to_bomb
+        adjacent_positions(bomb).each do |adjacent|
+          row, col = adjacent
+          self[adjacent].add_value unless self[adjacent].bomb?
+        end
+      end
+    end
 end
