@@ -1,15 +1,19 @@
 Rails.application.routes.draw do
   resources :users, only: [:create, :destroy, :index, :show, :update] do
+    get 'favorites', :on => :member
     resources :contacts, only: [:index]
     resources :comments, only: [:index]
+    resources :groups, only: [:index, :create]
   end
 
   resources :contacts, only: [:show, :update, :destroy, :create] do
     resources :comments, only: [:index]
-
+    resources :group_memberships, only: [:index]
   end
+
   resources :contact_shares, only: [:create, :destroy, :index] do
     resources :comments, only: [:index]
+    resources :group_memberships, only: [:index]
   end
 
   resources :comments, only: [:create, :destroy]

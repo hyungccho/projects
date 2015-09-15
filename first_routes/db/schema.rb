@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914235441) do
+ActiveRecord::Schema.define(version: 20150915064915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,21 +29,37 @@ ActiveRecord::Schema.define(version: 20150914235441) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "contact_shares", force: :cascade do |t|
-    t.integer "contact_id", null: false
-    t.integer "user_id",    null: false
+    t.integer "contact_id",                 null: false
+    t.integer "user_id",                    null: false
+    t.boolean "favorited",  default: false
   end
 
   add_index "contact_shares", ["user_id", "contact_id"], name: "index_contact_shares_on_user_id_and_contact_id", unique: true, using: :btree
 
   create_table "contacts", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "email",      null: false
-    t.integer  "user_id",    null: false
+    t.string   "name",                       null: false
+    t.string   "email",                      null: false
+    t.integer  "user_id",                    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "favorited",  default: false
   end
 
   add_index "contacts", ["email", "user_id"], name: "index_contacts_on_email_and_user_id", unique: true, using: :btree
+
+  create_table "group_memberships", force: :cascade do |t|
+    t.integer "group_id",       null: false
+    t.integer "contactable_id", null: false
+  end
+
+  add_index "group_memberships", ["contactable_id"], name: "index_group_memberships_on_contactable_id", using: :btree
+  add_index "group_memberships", ["group_id"], name: "index_group_memberships_on_group_id", using: :btree
+
+  create_table "groups", force: :cascade do |t|
+    t.integer "owner_id", null: false
+  end
+
+  add_index "groups", ["owner_id"], name: "index_groups_on_owner_id", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username",   null: false

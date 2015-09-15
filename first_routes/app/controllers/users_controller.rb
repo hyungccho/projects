@@ -35,4 +35,12 @@ class UsersController < ApplicationController
     @user.destroy
     render json: @user
   end
+
+  def favorites
+    @user = User.find(params[:id])
+    @favorited_users = @user.contacts.select { |contact| contact.favorited }
+    @favorited_users += @user.contact_shares.select { |contact| contact.favorited }
+
+    render json: @favorited_users
+  end
 end

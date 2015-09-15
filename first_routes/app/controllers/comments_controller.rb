@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
   def index
-
     @comments = find_commentable
     render json: @comments.comments
   end

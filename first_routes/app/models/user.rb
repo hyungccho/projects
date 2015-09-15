@@ -19,4 +19,9 @@ class User < ActiveRecord::Base
 
   has_many :comments,
     as: :commentable
+
+  has_many :groups,
+    class_name: "Group",
+    foreign_key: "owner_id",
+    primary_key: "id"
 end

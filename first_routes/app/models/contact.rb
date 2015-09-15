@@ -19,4 +19,7 @@ class Contact < ActiveRecord::Base
 
   has_many :comments,
     as: :commentable
+
+  has_many :memberships,
+    as: :contactable
 end
