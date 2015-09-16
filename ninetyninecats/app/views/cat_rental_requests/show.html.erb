@@ -1,0 +1,7 @@
+<h1>Your created request</h1>
+
+<ul>
+  <% @request.attributes.each do |key, value| %>
+    <li><%= key %> <%= value %></li>
+  <% end %>
+</ul>

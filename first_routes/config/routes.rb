@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:index]
     resources :group_memberships, only: [:index]
   end
-
+  
   resources :contact_shares, only: [:create, :destroy, :index] do
     resources :comments, only: [:index]
     resources :group_memberships, only: [:index]

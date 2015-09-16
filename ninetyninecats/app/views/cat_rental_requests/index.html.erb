@@ -1,0 +1,9 @@
+<h1><%= @cat.name %>'s rental requests!</h1>
+
+<ul>
+  <% @cat.rental_requests.each do |request| %>
+    <li>
+      <%= request.id %>, <%= request.start_date %>, <%= request.end_date %>
+    </li>
+  <% end %>
+</ul>

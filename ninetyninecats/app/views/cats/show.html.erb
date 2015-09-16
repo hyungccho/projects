@@ -1,0 +1,25 @@
+<table>
+  <th>My attributes</th>
+  <% @cat.attributes.each do |param, val| %>
+  <tr>
+    <td><%= param %></td>
+    <td><%= val %></td>
+  </tr>
+  <% end %>
+</table>
+
+<br>
+
+<table>
+  <th>Rental Requests</th>
+  <% @requests.each do |request| %>
+    <tr>
+      <td><%= request.start_date %></td>
+      <td><%= request.end_date %></td>
+      <% if request.status == "PENDING" %>
+        <td><%= button_to "Approve", cat_rental_request_approve_url(request), method: :patch %></td>
+        <td><%= button_to "Deny", cat_rental_request_deny_url(request), method: :patch %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
