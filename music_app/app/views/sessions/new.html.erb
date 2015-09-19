@@ -1,0 +1,19 @@
+<h1>Log in!</h1>
+
+<%= render 'errors.html.erb' if flash.now[:errors]%>
+
+<form action='/session' method='POST'>
+  <%= auth_token %>
+
+  <label>Email</label>
+  <input type='text' name='user[email]'>
+  <br>
+
+  <label>Password</label>
+  <input type='password' name='user[password]'>
+  <br>
+
+  <input type='submit' value='Log in!'>
+</form>
+<br>
+<%= link_to 'Sign up!', new_user_url %>

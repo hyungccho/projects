@@ -1,0 +1,4 @@
+<h1>Welcome back, <%= current_user.email %></h1>
+
+<%= render partial: 'bandlist' %>
+<%= link_to 'Create a Band', new_band_url %>

@@ -1,0 +1,18 @@
+<h1>Sign up!</h1>
+
+<%= render partial: 'errors' if flash.now[:invalid_fields]%>
+
+<form action='/users' method='POST'>
+  <%= auth_token %>
+
+  <label>Email</label>
+  <input type='text' name='user[email]' value='<%= @user.email %>'>
+  <br>
+
+  <label>Password</label>
+  <input type='password' name='user[password]'>
+  <br>
+
+  <input type='hidden' name='user[activation_token]' value='<%= @user.activation_token %>'>
+  <input type='submit' value='Sign up!'>
+</form>

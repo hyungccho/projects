@@ -1,0 +1,36 @@
+<% action_url = (@album.persisted? ? album_url : albums_url(@album)) %>
+<% method_name = (@album.persisted? ? "PATCH" : "POST") %>
+
+<h1><%= @album.title if @album.persisted? %></h1>
+
+<form action='<%= action_url %>' method='POST'>
+  <%= auth_token %>
+  <input type='hidden' name='_method' value='<%= method_name %>'>
+
+  <label>Band Name</label>
+  <select name='album[band_id]'>
+    <% @bands.each do |band| %>
+      <option value='<%= band.id %>'
+        <%= "selected" if @album.band_id == band.id %>>
+        <%= band.name %>
+      </option>
+    <% end %>
+  </select>
+  <br>
+  <br>
+
+  <label>Album Type</label>
+  <br>
+
+  <% Album::ALBUM_TYPE.each do |type| %>
+    <label><%= type %></label>
+    <input type='radio' name='album[album_type]' value='<%= type %>'
+      <%= "checked" if @album.album_type == type %>>
+  <% end %>
+  <br>
+
+  <label>Album Title</label>
+  <input type='text' name='album[title]' value='<%= @album.title %>'>
+
+  <input type='submit' value='Submit'>
+</form>

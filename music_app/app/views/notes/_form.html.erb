@@ -1,0 +1,9 @@
+<form action='/notes' method='POST'>
+  <%= auth_token %>
+
+  <label>Body</label>
+  <input type='textarea' name='note[note_text]'>
+  <input type='hidden' name='note[track_id]' value='<%= params[:track_id] %>'>
+
+  <input type='submit' value='Submit'>
+</form>
