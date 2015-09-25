@@ -1,0 +1,5 @@
+<ul>
+  <%= @post.comments.where('parent_id IS NULL').each do |comment| %>
+    <%= comment.top_level_comments %>
+  <% end %>
+</ul>

@@ -1,0 +1,15 @@
+<h1><%= @post.title %></h1>
+<h3>URL:<%= link_to @post.url, @post.url %></h3>
+
+<h3>Subs</h3>
+<%= render partial: 'sublist' %>
+
+<h3>Content</h3>
+<p><%= @post.content %></p>
+
+<h1>Comments</h1>
+
+<%= render partial: 'comments' %>
+
+<%= link_to "Edit Post", edit_post_url(@post) %>
+<%= link_to "Comment", new_post_comment_url(@post) %>

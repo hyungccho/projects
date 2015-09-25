@@ -1,0 +1,30 @@
+<% action_url =
+  (@post.persisted? ? post_url(@post) : sub_posts_url(params[:sub_id])) %>
+<% method = (@post.persisted? ? "PATCH" : "POST" ) %>
+
+<form action="<%= action_url %>" method="POST">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <%= auth_token %>
+
+  <label>Title</label>
+  <input type="text" name="post[title]" value="<%= @post.title %>">
+  <br>
+
+  <label>Url</label>
+  <input type="text" name="post[url]" value="<%= @post.url %>">
+  <br>
+
+  <label>Content</label>
+  <input type="text" name="post[content]" value="<%= @post.content %>">
+  <br>
+
+  <% @subs.each do |sub| %>
+    <label><%= sub.title %></label>
+    <input type="checkbox"
+           value="<%= sub.id %>"
+           name="post[sub_ids][]"
+           <%= "checked" if @post.subs.include?(sub)%>>
+  <% end %>
+
+  <input type="submit" value="Submit">
+</form>
