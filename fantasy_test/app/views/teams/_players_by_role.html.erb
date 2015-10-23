@@ -1,0 +1,5 @@
+<ul class="list-unstyled">
+  <% @players.where(position: pos).sort_by { |player| player.lname }.each do |player| %>
+    <li><%= link_to "#{player.lname}, #{player.fname}", player_url(player) %></li>
+  <% end %>
+</ul>

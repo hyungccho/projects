@@ -16,7 +16,7 @@ class ControllerBase < ApplicationController
     @res = res
     @already_build_response = false
     @params = Params.new(req, route_params)
-    @flash = Flash.new
+    @flash = Flash.new(req)
   end
 
   # Helper method to alias @already_built_response
@@ -48,7 +48,7 @@ class ControllerBase < ApplicationController
   end
 
   def render(template_name)
-    file = File.read("views/#{self.class.to_s.underscore}/#{template_name}.html.erb")
+    file = File.read("lib/views/#{self.class.to_s.sub("Controller", "")}/#{template_name}.html.erb")
     template = ERB.new(file)
     request_body = template.result(binding)
 

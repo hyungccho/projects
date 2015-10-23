@@ -1,0 +1,8 @@
+<h3>Current Draft</h3>
+
+<% if @draft.current_drafter == current_user %>
+  <p>Your turn to pick a player!</p>
+  <%= render partial: 'teams' %>
+<% else %>
+  <p>Waiting on <%= @draft.current_drafter.username %> to pick a player</p>
+<% end %>

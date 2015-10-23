@@ -2,13 +2,13 @@ class Flash
 
   attr_reader :flash, :flash_now
 
-  def initialize
+  def initialize(req)
     @flash = {}
     @flash_now = {}
 
     req.cookies.each do |cook|
       name = cook.name
-      if name = "flash"
+      if name == "flash"
         @flash = JSON.parse(cook.value)
         break
       end

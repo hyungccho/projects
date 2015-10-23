@@ -1,0 +1,7 @@
+<h3 class="cool-font top-md-buffer">Players</h3>
+
+<div class="list-group top-sm-buffer">
+  <% @league.users.each do |user|  %>
+    <%= link_to user.username, player_league_url(id: @league.id, user_id: user.id), class: "list-group-item" %>
+  <% end %>
+</div>

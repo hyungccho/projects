@@ -1,0 +1,8 @@
+<h1>All Teams</h1>
+<p>To view players, click player's team</p>
+
+<ul>
+  <% @teams.each do |team| %>
+    <li><%= link_to team.full_name, team_url(team) %></li>
+  <% end %>
+</ul>

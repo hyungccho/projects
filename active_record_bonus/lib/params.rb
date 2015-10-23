@@ -23,6 +23,21 @@ class Params
     @params.to_s
   end
 
+  def require(model)
+    @params = @params.select { |key, value| key == model}
+  end
+
+  def permit(*args)
+    h = {}
+
+    args.each do |key|
+      el = @params.find { |k, v| k == key }
+      h[el[0]] = h[el[1]]
+    end
+
+    @params = h
+  end
+
   class AttributeNotFoundError < ArgumentError; end;
 
   private

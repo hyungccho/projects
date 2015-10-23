@@ -1,0 +1,8 @@
+<div class="col-xs-3">
+  <div class="form-group">
+    <% 8.times do %>
+      <%= link_to @teams[i].full_name, team_url(@teams[i]), class: "list-group-item" %>
+      <% i += 1 %>
+    <% end %>
+  </div>
+</div>

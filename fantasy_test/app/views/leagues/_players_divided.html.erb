@@ -1,0 +1,19 @@
+<% i = 0 %>
+
+<% while i < @count %>
+  <div class="row">
+    <% 6.times do |k| %>
+      <div class="col-xs-2">
+        <div class="list-group">
+          <% 9.times do |j| %>
+            <% break if i + j >= @count %>
+            <%= link_to "#{@available_players[i + j].fname} #{@available_players[i + j].lname}",
+                player_url(@available_players[i + j], league_id: @league.id),
+                class: "list-group-item" %>
+          <% end %>
+          <% i += 9 %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

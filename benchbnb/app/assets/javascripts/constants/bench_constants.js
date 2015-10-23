@@ -1,0 +1,4 @@
+var BenchConstants = {
+  RECEIVE_ALL_BENCHES: "RECEIVE_ALL_BENCHES",
+  ADD_BENCH: "ADD_BENCH"
+};

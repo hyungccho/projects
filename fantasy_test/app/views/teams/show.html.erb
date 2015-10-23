@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <h1 class="text-center cool-font"><%= @team.full_name %></h1>
+    <p class="text-center">Click on a player's name to see their weekly performances</p>
+  </div>
+
+  <div class="row top-md-buffer">
+    <div class="col-md-2 col-md-offset-1">
+      <h3>QB</h3>
+      <%= render partial: 'players_by_role', object: "QB", as: 'pos' %>
+    </div>
+
+    <div class="col-md-2">
+      <h3>RB</h3>
+      <%= render partial: 'players_by_role', object: "RB", as: 'pos' %>
+    </div>
+
+    <div class="col-md-2">
+      <h3>WR</h3>
+      <%= render partial: 'players_by_role', object: "WR", as: 'pos' %>
+    </div>
+
+    <div class="col-md-2">
+      <h3>TE</h3>
+      <%= render partial: 'players_by_role', object: "TE", as: 'pos' %>
+    </div>
+
+    <div class="col-md-2">
+      <h3>K</h3>
+      <%= render partial: 'players_by_role', object: "K", as: 'pos' %>
+    </div>
+  </div>
+</div>

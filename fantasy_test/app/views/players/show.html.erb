@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4 col-xs-offset-4">
+      <h1 class="cool-font"><%= @player.fname %> <%= @player.lname %> -<%= @player.position %>-</h1>
+
+      <table class="table table-bordered top-sm-buffer">
+        <tr class="active">
+          <th>Week</th>
+          <th>Points</th>
+        </tr>
+
+        <% @rankings.each do |ranking| %>
+          <tr>
+            <td><%= ranking.week.week_num %></td>
+            <td><%= ranking.points %></td>
+          </tr>
+        <% end %>
+
+        <% if @draft && @draft.current_drafter == current_user %>
+          <%= button_to "Draft Player",
+              league_memberships_url(league_id: params[:league_id],
+                                     player_id: params[:player_id]),
+              class: "btn btn-default" %>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

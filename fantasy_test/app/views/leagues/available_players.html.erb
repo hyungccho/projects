@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <span class="cool-font"><h1>Positions</h1></span>
+    <div class="btn-group" role="group" aria-label="...">
+      <%= link_to "QB", available_players_league_url(@league, pos: "QB"), class: "btn btn-default" %>
+      <%= link_to "RB", available_players_league_url(@league, pos: "RB"), class: "btn btn-default" %>
+      <%= link_to "WR", available_players_league_url(@league, pos: "WR"), class: "btn btn-default" %>
+      <%= link_to "TE", available_players_league_url(@league, pos: "TE"), class: "btn btn-default" %>
+      <%= link_to "K", available_players_league_url(@league, pos: "K"), class: "btn btn-default" %>
+    </div>
+  </div>
+
+  <div class="row top-md-buffer">
+    <%= render partial: 'players_divided' %>
+  </div>
+</div>

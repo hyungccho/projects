@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="col-xs-6 col-xs-offset-3">
+    <h1 class="cool-font">All Open Leagues</h1>
+
+    <div class="list-group top-md-buffer">
+      <% @leagues.select { |league| !league.status }.each do |league| %>
+        <%= link_to league.name, league_url(league), class: "list-group-item" %>
+      <% end %>
+    </div>
+  </div>
+</div>

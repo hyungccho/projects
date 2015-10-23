@@ -1,0 +1,14 @@
+<div class="container">
+  <h1 class="cool-font">All Teams</h1>
+  <p>To view players, click player's team</p>
+
+  <div class="row top-md-buffer">
+    <% i = 0 %>
+
+    <% 4.times do %>
+      <%= render partial: 'split_team_list', locals: { i: i } %>
+      <% i += 7 %>
+    <% end %>
+  </div>
+
+</div>

@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <h1 class="cool-font">Start a League</h1>
+      <p>Remember, you must have at least 8 players to have an active league.</p>
+    </div>
+  </div>
+
+  <div class="row top-md-buffer">
+    <div class="col-xs-6 col-xs-offset-3">
+      <form action="<%= user_leagues_url(current_user) %>" method="POST">
+        <%= auth_token %>
+
+        <div class="form-group">
+          <label for="name">League Name:</label>
+          <input type="text" name="league[name]" class="form-control">
+        </div>
+
+        <input type="submit" value="Submit" class="btn btn-default">
+      </form>
+    </div>
+  </div>
+</div>

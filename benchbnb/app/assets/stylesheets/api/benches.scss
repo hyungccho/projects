@@ -1,0 +1,37 @@
+// Place all the styles related to the Api::Benches controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.map {
+  width: 500px;
+  height: 500px;
+  float: right;
+}
+
+.bench {
+  list-style-type: none;
+  width: 200px;
+  height: 220px;
+  float: left;
+  text-align: center;
+  font-family: Arial;
+  font-size: 14px;
+  margin: 20px 0;
+}
+
+.bench img {
+  width: 200px;
+  height: 200px
+}
+
+.bench:nth-child(3n + 2) {
+  margin: 20px 30px;
+}
+
+.active {
+  background-color: #eee;
+}
+
+.show {
+  float: left;
+}

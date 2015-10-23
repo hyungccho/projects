@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row padding-bottom blue-bottom">
+    <h1 class="cool-font"><%= @league.name %></h1>
+
+    <% if @league.users.count == 8 && !@league.status %>
+      <% @league.activate %>
+      <p>This league is ready to start drafting</p>
+    <% elsif @league.users.count < 8 %>
+      <p>You need <%= 8 - @league.users.count %> more players to start this league</p>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-3">
+      <%= render partial: 'league_users' %>
+    </div>
+
+    <% unless @league.users.include?(current_user) || @league.status || @league.users.count == 8 %>
+      <%= button_to "Join this league", league_user_memberships_url(@league), method: :post, class: "btn btn-default"%>
+    <% end %>
+
+    <!-- @ league. status PUT THIS IN IF STATEMENT WHEN READY -->
+    <% if !@league.started && @league.users.count == 8 %>
+      <%= button_to "Start Draft", league_drafts_url(@league), method: :post, class: "btn btn-primary" %>
+    <% end %>
+
+    <div class="col-xs-9 top-sm-buffer">
+      <div class-"row">
+        <% if @league.started %>
+          <h3 class="cool-font">Current Draft</h3>
+
+          <% if current_user == @draft.current_drafter %>
+            <h5 class="cool-font">Your turn to draft</h5>
+          <% else %>
+            <h5><%= @draft.current_drafter.username %>'s turn to draft</h5>
+          <% end %>
+      </div>
+
+        <div class="row">
+          <div class="col-xs-3">
+            <% unless current_user.drafted_players(@league).empty? %>
+              <h5 class="cool-font">Your Current Players</h5>
+
+              <div class="list-group">
+                <% current_user.drafted_players(@league).each do |player| %>
+                    <%= link_to "#{player.fname} #{player.lname}", player_url(player), class: "list-group-item text-center" %>
+                <% end %>
+              </div>
+
+            <% end %>
+
+            <% if current_user == @draft.current_drafter %>
+              <%= link_to "Available Players", available_players_league_url(@league), class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        </div>
+
+        <% end %>
+    </div>
+  </div>
+</div>

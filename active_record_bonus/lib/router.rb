@@ -10,7 +10,7 @@ class Route
 
   # checks if pattern matches path and method matches request method
   def matches?(req)
-    req.path.match(@pattern) && @method == req.request_method.downcase.to_sym
+    (@method == req.request_method.downcase.to_sym) && !!(@pattern =~ req.path)
   end
 
   # use pattern to pull out route params (save for later?)
@@ -51,12 +51,13 @@ class Router
   # when called add route
   [:get, :post, :put, :delete].each do |http_method|
     define_method(http_method) do |pattern, controller_class, action_name|
-      add_route(http_method, pattern, controller_class, action_name)
+      add_route(pattern, http_method, controller_class, action_name)
     end
   end
 
   # should return the route that matches this request
   def match(req)
+    p @routes
     @routes.each do |route|
       return route if route.matches?(req)
     end

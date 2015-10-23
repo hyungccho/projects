@@ -9,7 +9,7 @@ class Session
 
     req.cookies.each do |cook|
       name = cook.name
-      if name = "_rails_lite_app"
+      if name == "_rails_lite_app"
         @value = JSON.parse(cook.value)
         break
       end

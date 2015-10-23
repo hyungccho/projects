@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-xs-4 col-xs-offset-1">
+    <h2 class="cool-font"><%= @user.username %></h1>
+    <img class="img-rounded" src="<%= image_url("default_pic.jpg") %>">
+  </div>
+
+  <div class="col-xs-4 col-xs-offset-1">
+    <h3 class="cool-font">Your Leagues:</h3>
+
+    <ul>
+      <% current_user.participating_leagues.each do |league| %>
+        <li><%= link_to league.name, league_url(league) %></li>
+      <% end %>
+    </ul>
+
+    <%= link_to "Start a New League", new_user_league_url(current_user) %>
+    <br>
+    <%= link_to "Join a League", leagues_url %>
+  </div>
+</div>
